@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
-@Api("Тестовый контроллер")
+@Api("Test controller")
 @Slf4j
 public class TestController {
 
