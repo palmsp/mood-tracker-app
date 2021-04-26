@@ -1,0 +1,24 @@
+logging:
+  level:
+    com.palms: debug
+
+server:
+  port: 8088
+  servlet:
+    context-path: /api
+spring:
+  http:
+    encoding:
+      enabled: false
+  servlet:
+    multipart:
+      max-request-size: -1
+      max-file-size: -1
+  application:
+    name: mood-tracker-api
+
+open-weather-client:
+  url: "https://api.openweathermap.org/data/2.5/"
+  api-key: "7fb9de833c483c478a4eecbee32569b7"
+  connection-timeout: 3000
+  read-timeout: 3000

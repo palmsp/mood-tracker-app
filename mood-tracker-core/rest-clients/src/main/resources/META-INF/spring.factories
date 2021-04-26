@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.palms.mood.tracker.core.rest.clients.open.weather.starter.OpenWeatherClientAutoConfiguration
