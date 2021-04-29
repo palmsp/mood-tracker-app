@@ -157,7 +157,7 @@
     <!-- Checks for Javadoc -->
     <!-- See http://checkstyle.sourceforge.net/config_javadoc.html#JavadocType -->
     <module name="JavadocType">
-      <property name="authorFormat" value="[^\\s\\w]* \{@literal &lt;[\S]+@gmail.com&gt;\}"/>
+      <property name="authorFormat" value="[^\\s\\w]* \{@literal &lt;[\S]+&gt;\}"/>
     </module>
     <!-- See http://checkstyle.sourceforge.net/config_javadoc.html#JavadocMethod -->
     <module name="JavadocMethod">

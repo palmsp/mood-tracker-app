@@ -10,7 +10,7 @@
     
     <modules>
         <module>mood-tracker-api</module>
-        <module>mood-tracker-core</module>
+        <module>mood-tracker-common</module>
     </modules>
 
     <name>MOOD TRACKER</name>
@@ -40,6 +40,7 @@
         <assertj.version>3.12.1</assertj.version>
         <mockito.version>1.10.19</mockito.version>
         <jboss.resteasy.version>3.0.8.Final</jboss.resteasy.version>
+        <postgresql.version>42.2.20</postgresql.version>
         <!-- plugins version -->
         <maven.compiler.version>3.8.0</maven.compiler.version>
         <maven.checkstyle.version>3.0.0</maven.checkstyle.version>
@@ -57,11 +58,22 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
             <!-- Hibernate -->
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate.validator.version}</version>
+            </dependency>
+            <!-- Postgres -->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
             </dependency>
             <!-- Javax-->
             <dependency>

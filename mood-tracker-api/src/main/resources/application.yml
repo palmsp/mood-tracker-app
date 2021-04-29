@@ -16,6 +16,17 @@ spring:
       max-file-size: -1
   application:
     name: mood-tracker-api
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/mood_tracker_db
+    username: postgres
+    password: postgres404
+    driver-class-name: org.postgresql.Driver
 
 open-weather-client:
   url: "https://api.openweathermap.org/data/2.5/"
