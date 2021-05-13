@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -35,6 +36,15 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
     @org.springframework.web.bind.annotation.ExceptionHandler(value = Throwable.class)
     public ResponseEntity<Object> otherException(Throwable t) {
         return buildResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, t);
+    }
+
+    /**
+     * @param ex {@link AuthenticationException}
+     * @return {@link ResponseEntity}
+     */
+    @org.springframework.web.bind.annotation.ExceptionHandler(value = AuthenticationException.class)
+    public ResponseEntity<Object> authException(AuthenticationException ex) {
+        return buildResponseEntity(HttpStatus.UNAUTHORIZED, ex);
     }
 
     private ResponseEntity<Object> buildResponseEntity(HttpStatus status, Throwable t) {

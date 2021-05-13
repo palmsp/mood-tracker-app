@@ -36,6 +36,10 @@ public class CheckInEntity {
     @Column(name = "MOOD_SCORE")
     private Integer score;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "CHECK_IN_DATE", updatable = false)
+    private Date checkInDate;
+
     @Column(name = "ACTIVITY_IDS")
     @Convert(converter = IdsListConverter.class)
     private List<Long> activityIds;

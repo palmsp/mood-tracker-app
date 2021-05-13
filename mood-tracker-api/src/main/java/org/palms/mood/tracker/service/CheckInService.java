@@ -4,6 +4,7 @@ import org.palms.mood.tracker.domain.ActivityEntity;
 import org.palms.mood.tracker.domain.CheckInEntity;
 import org.palms.mood.tracker.domain.FeelingEntity;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,6 +26,16 @@ public interface CheckInService {
      * @return list
      */
     List<CheckInEntity> findCheckIns(Long userId);
+
+    /**
+     * Find all check-ins for user.
+     *
+     * @param userId   user id
+     * @param dateFrom start period
+     * @param dateTo   from period
+     * @return list
+     */
+    List<CheckInEntity> findCheckIns(Long userId, Date dateFrom, Date dateTo);
 
     /**
      * Find all activities.
