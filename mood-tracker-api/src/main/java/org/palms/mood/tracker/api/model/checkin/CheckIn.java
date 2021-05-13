@@ -12,6 +12,7 @@ import org.palms.mood.tracker.api.model.MoodFactor;
 import org.palms.mood.tracker.api.util.ApiUtil;
 import org.palms.mood.tracker.domain.CheckInEntity;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -64,6 +65,9 @@ public class CheckIn {
         checkIn.setDate(entity.getSysCreationDate());
         checkIn.setMood(entity.getScore());
         checkIn.setNotes(entity.getNotes());
+        checkIn.setActivities(Collections.emptyList());
+        checkIn.setFeelings(Collections.emptyList());
+        checkIn.setFactors(Collections.emptyList());
         return checkIn;
     }
 }

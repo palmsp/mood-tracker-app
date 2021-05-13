@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
  * @author Maria Pal {@literal <pal.maria.msp@gmail.com>}
  */
 @Repository
-public interface CheckInRepository extends JpaRepository<CheckInEntity, Long> {
+public interface CheckInRepository extends JpaRepository<CheckInEntity, Long>, CheckInRepositoryCustom {
+
 }

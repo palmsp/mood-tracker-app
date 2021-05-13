@@ -33,3 +33,7 @@ open-weather-client:
   api-key: "7fb9de833c483c478a4eecbee32569b7"
   connection-timeout: 3000
   read-timeout: 3000
+
+jwt:
+  secretKey: "verysecretkey"
+  validityTime: 3600000

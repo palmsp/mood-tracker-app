@@ -10,6 +10,7 @@ import org.palms.mood.tracker.repository.CheckInRepository;
 import org.palms.mood.tracker.repository.FeelingRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,7 +32,12 @@ public class CheckInServiceImpl implements CheckInService {
 
     @Override
     public List<CheckInEntity> findCheckIns(Long userId) {
-        return checkInRepository.findAll();
+        return checkInRepository.findCheckIns(userId);
+    }
+
+    @Override
+    public List<CheckInEntity> findCheckIns(Long userId, Date dateFrom, Date dateTo) {
+        return checkInRepository.findCheckIns(userId, dateFrom, dateTo);
     }
 
     @Override
