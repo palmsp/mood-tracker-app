@@ -3,12 +3,14 @@ package org.palms.mood.tracker.api.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Maria Pal {@literal <pal.maria.msp@gmail.com>}
  */
 @Data
 @ApiModel(description = "Meta information model")
+@NoArgsConstructor
 public class MetaInfo {
 
     @ApiModelProperty(value = "Status", allowableValues = "OK, ERROR", required = true)

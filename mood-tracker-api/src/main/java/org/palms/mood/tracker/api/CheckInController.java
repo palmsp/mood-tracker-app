@@ -20,11 +20,13 @@ import org.palms.mood.tracker.domain.FeelingEntity;
 import org.palms.mood.tracker.service.CheckInService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Calendar;
@@ -33,7 +35,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
-import javax.ws.rs.QueryParam;
 
 import static org.palms.mood.tracker.api.util.ApiUtil.API_DATE_FORMAT_DATE;
 import static org.palms.mood.tracker.api.util.ApiUtil.AUTH;
@@ -63,7 +64,7 @@ public class CheckInController {
      * @param request {@link CheckInRequest}
      * @return {@link ApiResponse}
      */
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Daily check-in", response = ApiResponse.class)
     public ApiResponse checkIn(@ApiParam(value = AUTH, required = true)
                                @RequestHeader(HttpHeaders.AUTHORIZATION) String token,
@@ -93,14 +94,14 @@ public class CheckInController {
      * @param dateTo date period from
      * @return {@link CheckInList}
      */
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Check-ins for period", response = CheckInList.class)
     public CheckInList checkIns(@ApiParam(value = AUTH, required = true)
                                 @RequestHeader(HttpHeaders.AUTHORIZATION) String token,
                                 @ApiParam(value = "Start of period", required = true)
-                                @QueryParam(value = "dateFrom") @DateTimeFormat(pattern = API_DATE_FORMAT_DATE) Date dateFrom,
+                                @RequestParam(value = "dateFrom") @DateTimeFormat(pattern = API_DATE_FORMAT_DATE) Date dateFrom,
                                 @ApiParam(value = "End of period", required = true)
-                                @QueryParam("dateFrom") @DateTimeFormat(pattern = API_DATE_FORMAT_DATE) Date dateTo) {
+                                @RequestParam(value = "dateTo") @DateTimeFormat(pattern = API_DATE_FORMAT_DATE) Date dateTo) {
         final Long userId = tokenUtil.getUserIdFromToken(token);
         log.info("CheckInController.checkIns for userId {} for period {} - {}", userId, dateFrom, dateTo);
         final Date dateStart = DateUtils.truncate(dateFrom, Calendar.DATE);
@@ -136,7 +137,7 @@ public class CheckInController {
      * @param token token
      * @return {@link CheckInOptions}
      */
-    @GetMapping("/options")
+    @GetMapping(value = "/options", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Check-in options", response = CheckInOptions.class)
     public CheckInOptions select(@ApiParam(value = AUTH, required = true)
                                  @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
@@ -161,7 +162,7 @@ public class CheckInController {
      * @param activity activity {@link Activity}
      * @return {@link ApiResponse}
      */
-    @PostMapping("/activity")
+    @PostMapping(value = "/activity", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Save activity", response = ApiResponse.class)
     public ApiResponse saveActivity(@ApiParam(value = AUTH, required = true)
                                     @RequestHeader(HttpHeaders.AUTHORIZATION) String token,
@@ -184,7 +185,7 @@ public class CheckInController {
      * @param feeling feeling {@link Feeling}
      * @return {@link ApiResponse}
      */
-    @PostMapping("/feeling")
+    @PostMapping(value = "/feeling", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Save feeling", response = ApiResponse.class)
     public ApiResponse saveFeeling(@ApiParam(value = AUTH, required = true)
                                    @RequestHeader(HttpHeaders.AUTHORIZATION) String token,
