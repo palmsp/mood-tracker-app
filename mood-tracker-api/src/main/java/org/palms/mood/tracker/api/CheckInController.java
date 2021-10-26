@@ -145,10 +145,8 @@ public class CheckInController {
         log.info("CheckInController.select for userId {}", userId);
         final List<ActivityEntity> activityEntities = ofNullable(checkInService.findActivities()).orElse(emptyList());
         final List<FeelingEntity> feelingEntities = ofNullable(checkInService.findFeelings()).orElse(emptyList());
-        final List<Activity> activities = activityEntities.stream().filter(activity -> !activity.isPublicInd())
-                .map(Activity::from).collect(Collectors.toList());
-        final List<Feeling> feelings = feelingEntities.stream().filter(feeling -> !feeling.isPublicInd())
-                .map(Feeling::from).collect(Collectors.toList());
+        final List<Activity> activities = activityEntities.stream().map(Activity::from).collect(Collectors.toList());
+        final List<Feeling> feelings = feelingEntities.stream().map(Feeling::from).collect(Collectors.toList());
         final CheckInOptions options = new CheckInOptions();
         options.setActivities(activities);
         options.setFeelings(feelings);

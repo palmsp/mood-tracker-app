@@ -1,9 +1,11 @@
 logging:
   level:
-    com.palms: debug
+    org.palms: debug
+    org.springframework.web: trace
+    org.apache: trace
 
 server:
-  port: 8088
+  port: 8080
   servlet:
     context-path: /api
 spring:
